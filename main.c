@@ -129,7 +129,7 @@ static void find_good_seed(int max_advances,
 }
 
 
-static int read_input_int(const char* prompt, int min, int max, ...) {
+static int read_input_int(const char* prompt, int min, int max) {
 	int result;
 	do {
 		printf("%s ", prompt);
