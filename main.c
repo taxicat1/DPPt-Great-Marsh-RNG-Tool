@@ -71,7 +71,8 @@ static void find_good_seed(int max_advances,
 	
 	int min_advances = 10;
 	
-	for (uint32_t month_day_minute_second = 0x01000000; month_day_minute_second != 0x00000000; month_day_minute_second += 0x01000000) {
+	uint32_t month_day_minute_second = 0x00000000;
+	do {
 		for (uint32_t hour = 0x00000000; hour < (24*0x00010000); hour += 0x00010000) {
 			for (uint32_t vsync = min_delay; vsync < max_delay+99; vsync++) {
 				
@@ -117,7 +118,7 @@ static void find_good_seed(int max_advances,
 				
 			}
 		}
-	}
+	} while ((month_day_minute_second += 0x01000000) != 0x00000000);
 	
 	printf("Not found! Try increasing the delay or frames, a different TID, or change your target Pokes\n");
 	if (backup_found) {
